@@ -71,6 +71,42 @@ app.patch("/products", (req, res) => {
 });
 */
 
+/*
+
+// RESPUESTAS DEL SERVIDOR
+
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
+
+app.get("/miarchivo", (req, res) => {
+  //sendFile se usa para cargar un archivo como respuesta
+  res.sendFile("./javascript.png", {
+    root: __dirname,
+  });
+});
+
+app.get("/user", (req, res) => {
+  res.json({
+    name: "David",
+    lastname: "Carreno",
+    age: 20,
+    points: [1, 2, 3],
+    address: {
+      city: "new york",
+      street: "street 445",
+    },
+  });
+});
+
+app.get("/isAlive", (req, res) => {
+  res.sendStatus(204);
+}); */
+
 const express = require("express");
 
 const app = express();
