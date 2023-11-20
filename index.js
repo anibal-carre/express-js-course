@@ -39,6 +39,9 @@ app.use((req, res) => {
 
 */
 
+/*
+// PETICIONES HTTP: GET, POST, PUT , DELETE Y PATCH
+
 const express = require("express");
 
 const app = express();
@@ -66,6 +69,11 @@ app.delete("/products", (req, res) => {
 app.patch("/products", (req, res) => {
   res.send("actualizando una parte del producto");
 });
+*/
+
+const express = require("express");
+
+const app = express();
 
 app.listen(3000);
 console.log(`Server on port ${3000}`);
