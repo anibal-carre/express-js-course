@@ -19,7 +19,7 @@ const express = require("express");
 const app = express();
 
 
-// RUTAS 
+// ------------------------- RUTAS -------------------------- 
 
 app.get("/", (req, res) => {
   res.send("hello world");
@@ -40,7 +40,7 @@ app.use((req, res) => {
 */
 
 /*
-// PETICIONES HTTP: GET, POST, PUT , DELETE Y PATCH
+// ------------------ PETICIONES HTTP: GET, POST, PUT , DELETE Y PATCH -----------------------
 
 const express = require("express");
 
@@ -73,7 +73,7 @@ app.patch("/products", (req, res) => {
 
 /*
 
-// RESPUESTAS DEL SERVIDOR
+// ------------------- RESPUESTAS DEL SERVIDOR ---------------
 
 const express = require("express");
 
@@ -106,6 +106,28 @@ app.get("/user", (req, res) => {
 app.get("/isAlive", (req, res) => {
   res.sendStatus(204);
 }); */
+
+//----------------- RECIBIR DATOS DEL CLIENTE ---------------------
+
+/*
+const express = require("express");
+
+const app = express();
+
+//Para que el servidor pueda entender los datos de tipo 'Text' enviados por el cliente
+app.use(express.text());
+//Para que el servidor pueda entender los datos de tipo 'Json' enviados por el cliente
+app.use(express.json());
+//Para que el servidor pueda entender los datos enviados por el cliente atraves de un formulario
+app.use(express.urlencoded({ extended: false }));
+
+app.post("/user", (req, res) => {
+  // console.log(req.body);  asi se puede usar la información que el cliente envio
+  console.log(req.body);
+  res.send("Nuevo usuario creado");
+});
+
+*/
 
 const express = require("express");
 
