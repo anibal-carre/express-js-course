@@ -129,9 +129,44 @@ app.post("/user", (req, res) => {
 
 */
 
+//------------- PARAMETROS DE LA URL --------------------
+
 const express = require("express");
 
 const app = express();
+
+app.get("/hello/:user", (req, res) => {
+  console.log(typeof req.params.user);
+  res.send(`Hello ${req.params.user.toUpperCase()}`);
+});
+
+app.get("/add/:x/:y", (req, res) => {
+  //console.log(req.params.x);
+  //console.log(req.params.y);
+
+  // ESTA ES UNA MEJOR FORMA DE OBTENER LOS DATOS DE LOS PARAMETROS , USANDO LA DESESTRUCTURACIÓN
+
+  const { x, y } = req.params;
+
+  const result = parseInt(x) + parseInt(y);
+  //const result = parseInt(req.params.x) + parseInt(req.params.y);
+  console.log(result);
+  res.send(`Result: ${result}`);
+});
+
+app.get("/users/:username/photo", (req, res) => {
+  if (req.params.username === "david") {
+    return res.sendFile("./javascript.png", {
+      root: __dirname,
+    });
+  }
+
+  res.send("el usuario no tiene acceso");
+});
+
+app.get("/nombre/:nombre/age/:age", (req, res) => {
+  res.send(`El usuario ${req.params.nombre} tiene ${req.params.age} años`);
+});
 
 app.listen(3000);
 console.log(`Server on port ${3000}`);
