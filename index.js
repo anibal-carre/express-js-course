@@ -131,12 +131,30 @@ app.post("/user", (req, res) => {
 
 //------------- PARAMETROS DE LA URL --------------------
 
+/*
 const express = require("express");
 
 const app = express();
 
+// Este es el metodo 'all', sirve para usar todos los metodos en la misma ruta
+
+app.all("/info", (req, res) => {
+  res.send("server info");
+});
+
+app.get("/search", (req, res) => {
+  if (req.query.q === "javascript books") {
+    res.send("lista de libros de javascript");
+  } else {
+    res.send("pagina normal");
+  }
+});
+
 app.get("/hello/:user", (req, res) => {
-  console.log(typeof req.params.user);
+  // Queries son variable que se pasan atraves de la url
+  //console.log(req.query.user);
+  //console.log(req.query.age);
+
   res.send(`Hello ${req.params.user.toUpperCase()}`);
 });
 
@@ -166,6 +184,46 @@ app.get("/users/:username/photo", (req, res) => {
 
 app.get("/nombre/:nombre/age/:age", (req, res) => {
   res.send(`El usuario ${req.params.nombre} tiene ${req.params.age} años`);
+});
+
+*/
+
+// --------------- MIDDLEWARES -------------------
+
+const express = require("express");
+
+const app = express();
+
+// MIDDLEWARE MORGAN
+const morgan = require("morgan");
+
+// los parametros de la funcion morgan se usa para escojer el formato de los datos, se puede ver los diferentes parametros en la documentación
+app.use(morgan("dev"));
+
+// MIDDLEWARE LOGGER
+/*
+app.use((req, res, next) => {
+  console.log(`Route: ${req.url} Metodo: ${req.method}`);
+
+  next();
+});
+
+*/
+app.get("/profile", (req, res) => {
+  res.send("profile page");
+});
+
+//MIDDLEWARE isAuthenticated
+app.use((req, res, next) => {
+  if (req.query.login === "david@gmail.com") {
+    next();
+  } else {
+    res.send("No autorizado");
+  }
+});
+
+app.get("/dashboard", (req, res) => {
+  res.send("Dashboard Page");
 });
 
 app.listen(3000);
